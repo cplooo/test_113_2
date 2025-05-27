@@ -382,6 +382,12 @@ with st.expander("K線圖, 移動平均線"):
 ###### K線圖, RSI
 with st.expander("長短 RSI"):
     fig2 = make_subplots(specs=[[{"secondary_y": True}]])
+    fig2.update_layout(yaxis=dict(fixedrange=False,  # 允許y軸縮放
+                                  autorange=True    # 自動調整範圍
+                                  ),
+                       xaxis=dict(rangeslider=dict(visible=True)  # 保留下方的範圍滑桿
+                                  )
+                       )
     #### include candlestick with rangeselector
     # fig2.add_trace(go.Candlestick(x=KBar_df['Time'],
     #                 open=KBar_df['Open'], high=KBar_df['High'],
@@ -426,6 +432,12 @@ with st.expander("K線圖,布林通道"):
 ###### MACD
 with st.expander("MACD(異同移動平均線)"):
     fig4 = make_subplots(specs=[[{"secondary_y": True}]])
+    fig4.update_layout(yaxis=dict(fixedrange=False,  # 允許y軸縮放
+                                  autorange=True    # 自動調整範圍
+                                  ),
+                       xaxis=dict(rangeslider=dict(visible=True)  # 保留下方的範圍滑桿
+                                  )
+                       )
     
     # #### include candlestick with rangeselector
     # fig4.add_trace(go.Candlestick(x=KBar_df['Time'],
