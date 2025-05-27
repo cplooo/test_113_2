@@ -519,6 +519,12 @@ def ChartOrder_MA(Kbar_df,TR):
     # 開始繪圖
     # ChartKBar(KBar,addp,volume_enable)
     fig5 = make_subplots(specs=[[{"secondary_y": True}]])
+    fig5.update_layout(yaxis=dict(fixedrange=False,  # 允許y軸縮放
+                                  autorange=True    # 自動調整範圍
+                                  ),
+                       xaxis=dict(rangeslider=dict(visible=True)  # 保留下方的範圍滑桿
+                                  )
+                       )
     
     #### include candlestick with rangeselector
     # fig5.add_trace(go.Candlestick(x=KBar_df['time'],
@@ -541,11 +547,12 @@ def ChartOrder_MA(Kbar_df,TR):
     st.plotly_chart(fig5, use_container_width=True)
 
 ###### 選擇不同交易策略:
-choices_strategy = ['<進場>: 移動平均線黃金交叉作多,死亡交叉作空. <出場>: 結算平倉(期貨), 移動停損.']
-choice_strategy = st.selectbox('選擇交易策略', choices_strategy, index=0)
+choices_strategies = ['<進場>: 移動平均線黃金交叉作多,死亡交叉作空. <出場>: 結算平倉(期貨), 移動停損.']
+choice_strategy = st.selectbox('選擇交易策略', choices_strategies, index=0)
 
 ##### 各別不同策略
-if choice_strategy == '<進場>: 移動平均線黃金交叉作多,死亡交叉作空. <出場>: 結算平倉(期貨), 移動停損.':
+#if choice_strategy == '<進場>: 移動平均線黃金交叉作多,死亡交叉作空. <出場>: 結算平倉(期貨), 移動停損.':
+if choice_strategy == choices_strategies[0]:
     #### 選擇參數
     with st.expander("<策略參數設定>: 交易停損量、長移動平均線(MA)的K棒週期數目、短移動平均線(MA)的K棒週期數目、購買數量"):
         MoveStopLoss = st.slider('選擇程式交易停損量(股票:每股價格; 期貨(大小台指):台股指數點數. 例如: 股票進場做多時, 取30代表停損價格為目前每股價格減30元; 大小台指進場做多時, 取30代表停損指數為目前台股指數減30點)', 0, 100, 30, key='MoveStopLoss')
