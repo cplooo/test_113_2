@@ -47,7 +47,7 @@ st.subheader("選擇金融商品: ")
 choices = ['台積電: 2022.1.1 至 2024.4.9', '大台指期貨2024.12到期: 2023.12 至 2024.4.11', '小台指期貨2024.12到期: 2023.12 至 2024.4.11', '英業達2020.1.2 至 2024.4.12', '堤維西2020.1.2 至 2024.4.12']
 choice = st.selectbox('選擇金融商品', choices, index=0)
 ##### 读取Pickle文件
-if choice == '台積電: 2022.1.1 至 2024.4.9':
+if choice == choices[0] :         ##'台積電: 2022.1.1 至 2024.4.9':
     df_original = load_data('kbars_2330_2022-01-01-2024-04-09.pkl')
     product_name = '台積電2330'
     # df_original = load_data('kbars_2330_2022-01-01-2024-04-09.pkl')
@@ -57,16 +57,16 @@ if choice == '台積電: 2022.1.1 至 2024.4.9':
     # df_original = df_original.drop('Unnamed: 0',axis=1)
 # if choice == '大台指2024.12到期: 2024.1 至 2024.4.9':
 #     df_original = load_data('kbars_TXF202412_2024-01-01-2024-04-09.pkl')  
-if choice == '大台指期貨2024.12到期: 2023.12 至 2024.4.11':
+if choice == choices[1] :                   ##'大台指期貨2024.12到期: 2023.12 至 2024.4.11':
     df_original = load_data('kbars_TXF202412_2023-12-21-2024-04-11.pkl')
     product_name = '大台指期貨'
-if choice == '小台指期貨2024.12到期: 2023.12 至 2024.4.11':
+if choice == choices[2] :                              ##'小台指期貨2024.12到期: 2023.12 至 2024.4.11':
     df_original = load_data('kbars_MXF202412_2023-12-21-2024-04-11.pkl')
     product_name = '小台指期貨'
-if choice == '英業達2020.1.2 至 2024.4.12':
+if choice == choices[3] :                                           ##'英業達2020.1.2 至 2024.4.12':
     df_original = load_data('kbars_2356_2020-01-01-2024-04-12.pkl')
     product_name = '英業達2356'
-if choice == '堤維西2020.1.2 至 2024.4.12':
+if choice == choices[4] :                                                       ##'堤維西2020.1.2 至 2024.4.12':
     df_original = load_data('kbars_1522_2020-01-01-2024-04-12.pkl')
     product_name = '堤維西1522'
 
